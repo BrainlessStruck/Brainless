@@ -1,4 +1,4 @@
 # Brainless
 Brainless Free Course
 
-CodeBuild we hate PASTERS!
+CodeBuilding we hate PASTERS!
