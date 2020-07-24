@@ -1,0 +1,203 @@
+<html>
+    <head>
+        <title>Brainless</title>
+        <meta charset="utf-8" />
+        <style>
+            body {
+                margin: 0;
+                background-color: #26262b;
+                overflow-x: hidden;
+            }
+
+            div#aulas {
+                max-height: 20vh;
+                overflow-y: scroll;
+                margin: 5px;
+                margin: 0;
+            }
+
+            div#aulas ul {
+                padding: 0;
+            }
+
+            div#aulas ul li {
+                display: inline-block;
+                padding: 0 0;
+                width: 20%;
+                height: 8%;
+                overflow: hidden;
+                text-align: center;
+            }
+        </style>
+        <!-- CSS only -->
+        <!-- <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+            integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+            crossorigin="anonymous"
+        /> -->
+
+        <link rel="stylesheet" href="bootstrap.min.css" />
+
+        <!-- JS, Popper.js, and jQuery -->
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" /> -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">Brainless</a>
+
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link" href="/Brainless/index.html">GameHacking <span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link active" href="/Brainless/webhacking.html">WebHacking</a>
+                </div>
+            </div>
+        </nav>
+        <div id="aulas">
+            <ul class="horizontal-slide">
+                <li class="list-group-item" v-for="(item, index) in items" :key="item.name">
+                    <a href="#" @click="click(index)" class="list-group-item-action">{{ item.name }}</a>
+                </li>
+            </ul>
+        </div>
+
+        <div style="width: 100vw; height: 80vh; position: relative;">
+            <iframe src="https://streamable.com/e/e8ixte" frameborder="0" width="100%" height="100%" allowfullscreen style="width: 100%; height: 100%; position: absolute;"></iframe>
+        </div>
+    </body>
+
+    <script>
+        const links = [
+            "https://streamable.com/dwkan8",
+            "https://streamable.com/gvz4o4",
+            "https://streamable.com/lso85e",
+            "https://streamable.com/dn3gpz",
+            "https://streamable.com/2ecm8x",
+            "https://streamable.com/m5nks7",
+            "https://streamable.com/5ukwj4",
+            "https://streamable.com/d709rr",
+            "https://streamable.com/hpv8yi",
+            "https://streamable.com/9akh0g",
+            "https://streamable.com/le9ea6",
+            "https://streamable.com/zyk8e2",
+            "https://streamable.com/25u08r",
+            "https://streamable.com/fp2ail",
+            "https://streamable.com/f2lmoj",
+            "https://streamable.com/r63g9d",
+            "https://streamable.com/tb7295",
+            "https://streamable.com/oqqa8u",
+            "https://streamable.com/r97vug",
+            "https://streamable.com/rm5zfi",
+            "https://streamable.com/dyjmo2",
+            "https://streamable.com/a1tjo8",
+            "https://streamable.com/t468zf",
+            "https://streamable.com/rtinup",
+            "https://streamable.com/ppu5th",
+            "https://streamable.com/q3cu9a",
+            "https://streamable.com/ol2k2g",
+            "https://streamable.com/wxf379",
+            "https://streamable.com/hvfkyp",
+            "https://streamable.com/t6s3a8",
+            "https://streamable.com/ya6enm",
+            "https://streamable.com/flpea9",
+            "https://streamable.com/na3ux1",
+            "https://streamable.com/21ldc0",
+            "https://streamable.com/m8uc11",
+            "https://streamable.com/0lr5od",
+            "https://streamable.com/f57hfl",
+            "https://streamable.com/ks2t3x",
+            "https://streamable.com/88l4bv",
+            "https://streamable.com/a70znj",
+            "https://streamable.com/xjah4w",
+            "https://streamable.com/8q0v8q",
+            "https://streamable.com/40aoq5",
+            "https://streamable.com/mll9of",
+            "https://streamable.com/q7lryd",
+            "https://streamable.com/6yk6nw",
+            "https://streamable.com/s7jxrl",
+        ];
+        const iframe = $("iframe")[0];
+        new Vue({
+            el: "#aulas",
+            data: {
+                items: [
+                    { name: "O que é Web Hacking?" },
+                    { name: "Black hat x White hat" },
+                    { name: "Por que ser do bem? E salario de um hacker" },
+                    { name: "Series Hackers " },
+                    { name: "Mentalidade de um Hacker" },
+                    { name: "VPN" },
+                    { name: "Rede Tor" },
+                    { name: "Macetes da rede tor" },
+                    { name: "DuckDuckGo e Provedor" },
+                    { name: "Maltego" },
+                    { name: "Maltego e Linkedin Hacking" },
+                    { name: "WhoIS" },
+                    { name: "Buscando informações " },
+                    { name: "O Poder das DORKS" },
+                    { name: "FacebookHacking" },
+                    { name: "GoogleHacking" },
+                    { name: "O que é Engenharia Social?" },
+                    { name: "Perguntas Socraticas" },
+                    { name: "Script" },
+                    { name: "Algumas Tecnicas de Persuasão " },
+                    { name: "O que é Database?" },
+                    { name: "HASH" },
+                    { name: "Tipos de Criptografia " },
+                    { name: "VPS" },
+                    { name: "Conectando na VPS e Server Manager " },
+                    { name: "Hospedando um site usando XAMPP em uma VPS" },
+                    { name: "O que são Checkers" },
+                    { name: "Captcha" },
+                    { name: "Proxy" },
+                    { name: "Leaks" },
+                    { name: "Network e Inspect Element " },
+                    { name: "Server Side e Client Side " },
+                    { name: "Front End e BackEnd na pratica " },
+                    { name: "Analisando e testando funções" },
+                    { name: "Como funciona o seu IP" },
+                    { name: "Google Earth" },
+                    { name: "Porque é impossível ser anonimo" },
+                    { name: "Localização de IP" },
+                    { name: "Ataques via IP" },
+                    { name: "Cloudflare" },
+                    { name: "Cloudflare Bypass/MDNS" },
+                    { name: "Explicando todos os tipos de ataques DDOS" },
+                    { name: "ping -t" },
+                    { name: "ataque de negação de serviço com ping -t" },
+                    { name: "Ip Logger" },
+                    { name: "IP resolver com maltego" },
+                    { name: "IP resolver com DNS" },
+                    { name: "Wayback Machine" },
+                    { name: "Shell.php" },
+                    { name: "Como faturar R$20.000 por dia com ataques ddos" },
+                    { name: "Anti - DDOS" },
+                    { name: "Funções do Cloudflare" },
+                ],
+            },
+            methods: {
+                click(index) {
+                    iframe.src = links[index];
+                },
+            },
+        });
+
+        iframe.src = links[0];
+    </script>
+</html>
