@@ -8,25 +8,12 @@
                 background-color: #26262b;
                 overflow-x: hidden;
             }
-
-            div#aulas {
-                max-height: 20vh;
-                overflow-y: scroll;
-                margin: 5px;
-                margin: 0;
-            }
-
-            div#aulas ul {
-                padding: 0;
-            }
-
-            div#aulas ul li {
+            .ccard {
                 display: inline-block;
-                padding: 0 0;
-                width: 20%;
-                height: 8%;
-                overflow: hidden;
-                text-align: center;
+                width: 20rem;
+            }
+            .card {
+                height: 18%;
             }
         </style>
         <!-- CSS only -->
@@ -45,7 +32,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
 
-        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="ejs.js"></script>
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -69,17 +56,30 @@
                 </div>
             </div>
         </nav>
-        <div id="aulas">
-            <ul class="horizontal-slide">
-                <li class="list-group-item" v-for="(item, index) in items" :key="item.name">
-                    <a href="#" @click="click(index)" class="list-group-item-action">{{ item.name }}</a>
-                </li>
-            </ul>
-        </div>
 
         <div style="width: 100vw; height: 80vh; position: relative;">
             <iframe src="https://streamable.com/e/e8ixte" frameborder="0" width="100%" height="100%" allowfullscreen style="width: 100%; height: 100%; position: absolute;"></iframe>
         </div>
+
+        <script id="rAulas" type="text/template">
+                <div class="container">
+                <% for( let i = 0; i < names.length; i++ ) { %>
+                    <div class="ccard">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <%= `(${i}) ${names[i]}` %>
+                                </h5>
+
+                                <button type="button" class="btn btn-primary" onclick="SetVideo(<%= i %>)">
+                                    Pastear!
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+        </script>
     </body>
 
     <script>
@@ -132,72 +132,80 @@
             "https://streamable.com/6yk6nw",
             "https://streamable.com/s7jxrl",
         ];
-        const iframe = $("iframe")[0];
-        new Vue({
-            el: "#aulas",
-            data: {
-                items: [
-                    { name: "O que é Web Hacking?" },
-                    { name: "Black hat x White hat" },
-                    { name: "Por que ser do bem? E salario de um hacker" },
-                    { name: "Series Hackers " },
-                    { name: "Mentalidade de um Hacker" },
-                    { name: "VPN" },
-                    { name: "Rede Tor" },
-                    { name: "Macetes da rede tor" },
-                    { name: "DuckDuckGo e Provedor" },
-                    { name: "Maltego" },
-                    { name: "Maltego e Linkedin Hacking" },
-                    { name: "WhoIS" },
-                    { name: "Buscando informações " },
-                    { name: "O Poder das DORKS" },
-                    { name: "FacebookHacking" },
-                    { name: "GoogleHacking" },
-                    { name: "O que é Engenharia Social?" },
-                    { name: "Perguntas Socraticas" },
-                    { name: "Script" },
-                    { name: "Algumas Tecnicas de Persuasão " },
-                    { name: "O que é Database?" },
-                    { name: "HASH" },
-                    { name: "Tipos de Criptografia " },
-                    { name: "VPS" },
-                    { name: "Conectando na VPS e Server Manager " },
-                    { name: "Hospedando um site usando XAMPP em uma VPS" },
-                    { name: "O que são Checkers" },
-                    { name: "Captcha" },
-                    { name: "Proxy" },
-                    { name: "Leaks" },
-                    { name: "Network e Inspect Element " },
-                    { name: "Server Side e Client Side " },
-                    { name: "Front End e BackEnd na pratica " },
-                    { name: "Analisando e testando funções" },
-                    { name: "Como funciona o seu IP" },
-                    { name: "Google Earth" },
-                    { name: "Porque é impossível ser anonimo" },
-                    { name: "Localização de IP" },
-                    { name: "Ataques via IP" },
-                    { name: "Cloudflare" },
-                    { name: "Cloudflare Bypass/MDNS" },
-                    { name: "Explicando todos os tipos de ataques DDOS" },
-                    { name: "ping -t" },
-                    { name: "ataque de negação de serviço com ping -t" },
-                    { name: "Ip Logger" },
-                    { name: "IP resolver com maltego" },
-                    { name: "IP resolver com DNS" },
-                    { name: "Wayback Machine" },
-                    { name: "Shell.php" },
-                    { name: "Como faturar R$20.000 por dia com ataques ddos" },
-                    { name: "Anti - DDOS" },
-                    { name: "Funções do Cloudflare" },
-                ],
-            },
-            methods: {
-                click(index) {
-                    iframe.src = links[index];
-                },
-            },
-        });
 
+        const names = [
+            "O que é Web Hacking?",
+            "Black hat x White hat",
+            "Por que ser do bem? E salario de um hacker",
+            "Series Hackers ",
+            "Mentalidade de um Hacker",
+            "VPN",
+            "Rede Tor",
+            "Macetes da rede tor",
+            "DuckDuckGo e Provedor",
+            "Maltego",
+            "Maltego e Linkedin Hacking",
+            "WhoIS",
+            "Buscando informações ",
+            "O Poder das DORKS",
+            "FacebookHacking",
+            "GoogleHacking",
+            "O que é Engenharia Social?",
+            "Perguntas Socraticas",
+            "Script",
+            "Algumas Tecnicas de Persuasão ",
+            "O que é Database?",
+            "HASH",
+            "Tipos de Criptografia ",
+            "VPS",
+            "Conectando na VPS e Server Manager ",
+            "Hospedando um site usando XAMPP em uma VPS",
+            "O que são Checkers",
+            "Captcha",
+            "Proxy",
+            "Leaks",
+            "Network e Inspect Element ",
+            "Server Side e Client Side ",
+            "Front End e BackEnd na pratica ",
+            "Analisando e testando funções",
+            "Como funciona o seu IP",
+            "Google Earth",
+            "Porque é impossível ser anonimo",
+            "Localização de IP",
+            "Ataques via IP",
+            "Cloudflare",
+            "Cloudflare Bypass/MDNS",
+            "Explicando todos os tipos de ataques DDOS",
+            "ping -t",
+            "ataque de negação de serviço com ping -t",
+            "Ip Logger",
+            "IP resolver com maltego",
+            "IP resolver com DNS",
+            "Wayback Machine",
+            "Shell.php",
+            "Como faturar R$20.000 por dia com ataques ddos",
+            "Anti - DDOS",
+            "Funções do Cloudflare",
+        ];
+        const iframe = $("iframe")[0];
+
+        const SetVideo = (index) => {
+            iframe.src = links[index];
+
+            $("html, body").animate(
+                {
+                    scrollTop: 0,
+                },
+                800
+            );
+        };
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const rAulas = document.getElementById("rAulas");
+            const html = ejs.render(rAulas.innerHTML, { locals: { names } });
+            console.log(html);
+            rAulas.outerHTML = html;
+        });
         iframe.src = links[0];
     </script>
 </html>
