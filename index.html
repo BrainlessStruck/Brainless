@@ -8,25 +8,12 @@
                 background-color: #26262b;
                 overflow-x: hidden;
             }
-
-            div#aulas {
-                max-height: 20vh;
-                overflow-y: scroll;
-                margin: 5px;
-                margin: 0;
-            }
-
-            div#aulas ul {
-                padding: 0;
-            }
-
-            div#aulas ul li {
+            .ccard {
                 display: inline-block;
-                padding: 0 0;
-                width: 20%;
-                height: 8%;
-                overflow: hidden;
-                text-align: center;
+                width: 20rem;
+            }
+            .card {
+                height: 18%;
             }
         </style>
         <!-- CSS only -->
@@ -45,7 +32,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
 
-        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="ejs.js"></script>
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -69,34 +56,54 @@
                 </div>
             </div>
         </nav>
-        <div id="aulas">
-            <ul class="horizontal-slide">
-                <li class="list-group-item" v-for="(item, index) in items" :key="item.name">
-                    <a href="#" @click="click(index)" class="list-group-item-action">{{ item.name }}</a>
-                </li>
-            </ul>
-        </div>
 
         <div style="width: 100vw; height: 80vh; position: relative;">
             <iframe src="https://streamable.com/e/e8ixte" frameborder="0" width="100%" height="100%" allowfullscreen style="width: 100%; height: 100%; position: absolute;"></iframe>
         </div>
+
+        <script id="rAulas" type="text/template">
+                <div class="container">
+                <% for( let i = 0; i < names.length; i++ ) { %>
+                    <div class="ccard">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <%= `(${i}) ${names[i]}` %>
+                                </h5>
+
+                                <button type="button" class="btn btn-primary" onclick="SetVideo(<%= i %>)">
+                                    Pastear!
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+        </script>
     </body>
 
     <script>
         const links = ["https://streamable.com/e8ixte", "https://streamable.com/gbt568", "https://streamable.com/clvj7b", "https://streamable.com/ttu37z", "https://streamable.com/r8nnl2"];
+        const names = ["O que é GameHacking e o que vamos estudar?", "Plataforma e fóruns ", "Paste e Plataforma", "Visual Studio", "Sublime Text"];
         const iframe = $("iframe")[0];
-        new Vue({
-            el: "#aulas",
-            data: {
-                items: [{ name: "O que é GameHacking e o que vamos estudar?" }, { name: "Plataforma e fóruns " }, { name: "Paste e Plataforma" }, { name: "Visual Studio" }, { name: "Sublime Text" }],
-            },
-            methods: {
-                click(index) {
-                    iframe.src = links[index];
-                },
-            },
-        });
 
+        const SetVideo = (index) => {
+            iframe.src = links[index];
+
+            $("html, body").animate(
+                {
+                    scrollTop: 0,
+                },
+                800
+            );
+        };
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const rAulas = document.getElementById("rAulas");
+            const html = ejs.render(rAulas.innerHTML, { locals: { names } });
+            console.log(html);
+            rAulas.outerHTML = html;
+        });
         iframe.src = links[0];
     </script>
 </html>
